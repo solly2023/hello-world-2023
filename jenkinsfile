@@ -14,8 +14,9 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/solly2023/hello-world-2023.git'
             }
         }
-        stage('Code Build') {
+        stage(Sonarqube scan) {
             steps {
+            withSonarQubeEnv(' sonarQube') { 
                 sh 'mvn clean install package'
             }
         }
