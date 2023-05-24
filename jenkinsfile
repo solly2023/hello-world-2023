@@ -14,10 +14,10 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/solly2023/hello-world-2023.git'
             }
         }
-        stage('Sonarqube scan') {
+        stage("Sonarqube scan") {
             steps {
-            withSonarQubeEnv(' sonarQube') { 
-                sh 'mvn clean install package'
+            withSonarQubeEnv('sonarQube') { 
+                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=solly2023_geolocation'
             }
         }
         stage('Test') {
