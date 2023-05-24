@@ -19,10 +19,12 @@ pipeline {
             withSonarQubeEnv('sonarQube') { 
         sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=solly2023_geolocation'
                 }
+
+         }
         }
-        stage('Test') {
+        stage('code Build') {
             steps {
-                sh 'mvn test'
+                sh 'mvn clean install packages'
             }
         }
         stage('Build Image') {
